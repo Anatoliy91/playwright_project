@@ -1,11 +1,11 @@
 const { test, expect } = require('@playwright/test');
 const API = require('../api.js');
 
-const api = new API('https://dev.omni-dispatch.com');
+const api = new API('https://dev.omni-dispatch.com/api');
 
 test.beforeAll(async () => {
   await api.init();
-  await api.login('test@gmail.com', '12345678'); // Введіть реальні дані
+  await api.login('test@gmail.com', '12345678');
 });
 
 test.describe('API Tests', () => {
@@ -13,7 +13,7 @@ test.describe('API Tests', () => {
     const response = await api.get('/drivers');
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
-    console.log(responseBody); // Роздрукувати відповідь для дебагінгу
+    console.log(responseBody); // для дебагінгу
     expect(Array.isArray(responseBody)).toBeTruthy();
   });
 
@@ -21,7 +21,7 @@ test.describe('API Tests', () => {
     const response = await api.get('/trucks');
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
-    console.log(responseBody); // Роздрукувати відповідь для дебагінгу
+    console.log(responseBody);
     expect(Array.isArray(responseBody)).toBeTruthy();
   });
 
@@ -30,7 +30,7 @@ test.describe('API Tests', () => {
     const response = await api.get(`/drivers/${driverId}`);
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
-    console.log(responseBody); // Роздрукувати відповідь для дебагінгу
+    console.log(responseBody);
     expect(responseBody.id).toBe(driverId);
   });
 });
