@@ -22,7 +22,7 @@ class API {
           password: password
         },
         headers: {
-          'Content-Type': 'application/json' // Убедитесь, что это правильно
+          'Content-Type': 'application/json'
         }
       });
 
@@ -40,7 +40,7 @@ class API {
         console.log(`Login response body: ${JSON.stringify(responseBody)}`);
 
         if (response.status() === 200) {
-          this.token = responseBody.token; // Убедитесь, что это правильное поле
+          this.token = responseBody.token;
           this.context = await request.newContext({
             headers: {
               'Authorization': `Bearer ${this.token}`
